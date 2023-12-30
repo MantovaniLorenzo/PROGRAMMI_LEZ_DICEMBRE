@@ -1,5 +1,5 @@
-// PROGRAMMA CHE DATA UNA RUBRICA DOBBIAMO POPOLARE LA RUBRICA, SE IL CLIENTE Ë GIA ALL'INTERNO DELLA RUBRICA
-// dovremmo ipoteticamente aggiornare l'et‡, SE NON C'Ë IL CLIENTE AGGIUNGERLO ALLA RUBRICA
+// PROGRAMMA CHE DATA UNA RUBRICA DOBBIAMO POPOLARE LA RUBRICA, SE IL CLIENTE √® GIA ALL'INTERNO DELLA RUBRICA
+// dovremmo ipoteticamente aggiornare l'et√†, SE NON C'√® IL CLIENTE AGGIUNGERLO ALLA RUBRICA
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -10,7 +10,7 @@
 
 typedef struct {
 	char nome[M];
-	char id[2];   // se c'Ë un carattere conviene leggerlo come stringa di 2 elementi 
+	char id[2];   // se c'√® un carattere conviene leggerlo come stringa di 2 elementi 
 	int eta;
 
 }cliente;
@@ -20,7 +20,7 @@ int main(void) {
 	FILE* fp;
 	cliente* v;
 	int dim, i, flag = 0;
-	cliente elem;  // singolo elemento di tipo cliente elem Ë il nome della variabile
+	cliente elem;  // singolo elemento di tipo cliente elem √® il nome della variabile
 	char nome[M];
 
 	printf("Inserire dimensione rubrica:\n"); // dimensione del vettore
@@ -44,28 +44,28 @@ int main(void) {
 
 	//lettura da file 
 	i = 0;
-	while (i < dim && fscanf(fp, "%s%s%d%*s", v[i].nome, v[i].id, &v[i].eta) != EOF) { // leggo per ogni tipo della mia struct, & Ë davanti ad id e eta perchË non sono stringhe
-	// SE nel file di input sono presenti anche pi˘ campi che non sono rilevanti al fine del programma Ë possibile saltarli con  !! %* e poi il formato salter‡ quello FUNZIONA PER QUALSIASI FORMATO DA SALTARE
+	while (i < dim && fscanf(fp, "%s%s%d%*s", v[i].nome, v[i].id, &v[i].eta) != EOF) { // leggo per ogni tipo della mia struct, & √® davanti ad id e eta perch√® non sono stringhe
+	// SE nel file di input sono presenti anche pi√π campi che non sono rilevanti al fine del programma √® possibile saltarli con  !! %* e poi il formato salter√† quello FUNZIONA PER QUALSIASI FORMATO DA SALTARE
 		i++;
 	}
 	dim = i;
 	fclose(fp);
 
 	 // l' utente inserisce un nuovo nominativo CONDIZIONI COME QUELLE SOPRA
-	// SE Ë PRESENTE nella rubrica leggo se non c'Ë aggiungo
+	// SE √® PRESENTE nella rubrica leggo se non c'√® aggiungo
 
 	printf("Inserire il nome di un utente:\n");
 	while (scanf("%s", nome) != EOF) {
-		flag = 0;   // quando ricomincia il ciclo devo riaggiornare il flag quindi lo rimetto a 0 perchË sennÚ il ciclo looppa perchË Ë sempre a 1
-		for (i = 0; i < dim && flag == 0; i++) {   // se questo non Ë vero non Ë detto che l'elemento non c'Ë ma solo che non Ë in posizione i-esima
+		flag = 0;   // quando ricomincia il ciclo devo riaggiornare il flag quindi lo rimetto a 0 perch√® senn√≤ il ciclo looppa perch√® √® sempre a 1
+		for (i = 0; i < dim && flag == 0; i++) {   // se questo non √® vero non √® detto che l'elemento non c'√® ma solo che non √® in posizione i-esima
 			if (strcmp(v[i].nome, nome) == 0) {
-				flag = 1; // se il nominativo c'Ë aggiorno il flag 
+				flag = 1; // se il nominativo c'√® aggiorno il flag 
 				printf("Inserire l'eta' aggiornata: \n");
 				scanf("%d", &v[i].eta);
 			}
-		}                  // quindi con flag = 0 vuol dire che l'elemento non Ë presente in tutto il vettore
-		if (flag == 0) {  // essendoci un && nella condizione mi esce quando una delle due Ë falsa quindi devo capire in quale caso mi trovo
-			v = (cliente*)realloc(v, (dim + 1) * sizeof(cliente)); // devo copiare lÏ ultimo elemento perchË io ho gia riempito il vettore fino a dim-1 perÚ c'Ë il tappo quindi devo allungarlo
+		}                  // quindi con flag = 0 vuol dire che l'elemento non √® presente in tutto il vettore
+		if (flag == 0) {  // essendoci un && nella condizione mi esce quando una delle due √® falsa quindi devo capire in quale caso mi trovo
+			v = (cliente*)realloc(v, (dim + 1) * sizeof(cliente)); // devo copiare l√¨ ultimo elemento perch√® io ho gia riempito il vettore fino a dim-1 (che √® l'ultimo indice di posizione in quanto gli indici vanno da 0 a dim-1 cosi da avere "dim" posizioni) per√≤ c'√® il tappo quindi devo allungarlo
 			strcpy(v[dim].nome, nome); // avendolo allungato ora posso farlo
 			printf("Inserire anche l'id del nuovo cliente e l'eta':\n");
 			scanf("%s%d", v[dim].id, &v[dim].eta);
