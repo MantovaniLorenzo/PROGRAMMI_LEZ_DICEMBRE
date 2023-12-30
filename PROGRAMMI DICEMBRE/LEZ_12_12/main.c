@@ -12,8 +12,8 @@
 int main(void) {
 
 	int* v, i, *v_flag, dim, num;
-	FILE* fp;           // usiamo file perchè abbiamo detto che leggiamo i dati da FILE per allenarli
-	char nome[21];     // stringa in cui andrò a mettere il nome del file per aprirlo, dimensione del file massimo 20 caratteri, l'uno in più serve per il tappo 
+	FILE* fp;           // usiamo file perchÃ¨ abbiamo detto che leggiamo i dati da FILE per allenarli
+	char nome[21];     // stringa in cui andrÃ² a mettere il nome del file per aprirlo, dimensione del file massimo 20 caratteri, l'uno in piÃ¹ serve per il tappo 
 
 	printf("Definisci dimensione vettore: \n");
 	scanf("%d", &dim);
@@ -26,43 +26,43 @@ int main(void) {
 	}
 
 	printf("Inserire nome FILE INPUT:");
-	scanf_s("%s", nome, 20);  // poichè ho usato la scanf_s devo ANCHE dare la dimensione massima.
+	scanf_s("%s", nome, 20);  // poichÃ¨ ho usato la scanf_s devo ANCHE dare la dimensione massima.
 	
-	fp = fopen(nome, "r");  // aperto il file in modalità lettura (copio, leggo e basta)
-	if (fp == NULL) { // come per la malloc proteggo e controllo se il file è stato aperto correttamente, cioè se è stato localizzato, cioè se l'utente magari ha sbagliato il nome del file. 
+	fp = fopen(nome, "r");  // aperto il file in modalitÃ  lettura (copio, leggo e basta)
+	if (fp == NULL) { // come per la malloc proteggo e controllo se il file Ã¨ stato aperto correttamente, cioÃ¨ se Ã¨ stato localizzato, cioÃ¨ se l'utente magari ha sbagliato il nome del file. 
 		printf("ERRORE di apertura.\n");
 		exit(EXIT_FAILURE);
 	}
 
 
-	// copiamo il contenuto da file perchè l'accesso dei file è sequenziale e quindi complesso, quindi li copio in un altro tipo di struttura.
+	// copiamo il contenuto da file perchÃ¨ l'accesso dei file Ã¨ sequenziale e quindi complesso, quindi li copio in un altro tipo di struttura.
 	// stessa cosa su OUTPUT se devo memorizzare diversi risultati li copio in un file che quando viene salvato ricorda. 
 
 
-	// i FILE li uso quando ho tante informazioni, quindi dovrò fare tante letture con altrettante chiamate di funzioni e quindi userò un ciclo, così riuscirò a leggere tutto il file in modo sequenziale.
+	// i FILE li uso quando ho tante informazioni, quindi dovrÃ² fare tante letture con altrettante chiamate di funzioni e quindi userÃ² un ciclo, cosÃ¬ riuscirÃ² a leggere tutto il file in modo sequenziale.
 
 
 
-	// FINO A QUA NON HO ANCORA FATTO NULLA DI QUELLO CHE è L'OBIETTIVO DELL'ESERICIZIO STO SOLO FACENDO TUTTO QUELLO CHE MI SERVE PRIMA DELLE VARIE OPERAZIONI
+	// FINO A QUA NON HO ANCORA FATTO NULLA DI QUELLO CHE Ã¨ L'OBIETTIVO DELL'ESERICIZIO STO SOLO FACENDO TUTTO QUELLO CHE MI SERVE PRIMA DELLE VARIE OPERAZIONI
 	
 	// Stiamo solo leggendo il FILE
 
 	// IMPORTANTE QUESTO APPORCCIO DI LETTURA FILE SI USA PER QUALUNQUE TIPO DI VETTORE ABBIAMO, CHE SIA STRUTTURA, STRINGHE etc.
 	i = 0;
-	while (i < dim && fscanf(fp, "%d", &v[i])!= EOF) {  // devo riempire un vettore di interni, è come la scanf ma ha il parametro del FILE da cui prenderà i dati, prima però controllo che ci sia spazio nel vettore, cosi se il FILE è comunque pioù lungo il ciclo termina comunque (LO METTO PRIMA PERCHè L'ORDINE DELL & è IMPORTANTE, L' & RISULTA FALSO APPENA UNA DELLE DUE è FALSA COSI NEL CASO SFORI NON PROVA A METTERE L'ULTIMA ROBA IN MEMORIA NON ALLOCATA)
-	// ricordiamo che la fscanf aggiorna ad ogni chiamata il puntatore a FILE, cioè fp, cioè una volta che avrà letto il primo elemento e lo avrà messo all' 0-esima posizione, aggiorna fp cosi punta direttamente all'elemento dopo. ( nel nostro caso sarà uno spazio/un a capo perchè è un file di testo, ma la fscanf li salta di base perchè abbiamo messo %d che non sono INTERI quindi li salta)
+	while (i < dim && fscanf(fp, "%d", &v[i])!= EOF) {  // devo riempire un vettore di interi, Ã¨ come la scanf ma ha il parametro del FILE da cui prenderÃ  i dati, prima perÃ² controllo che ci sia spazio nel vettore, cosi se il FILE Ã¨ comunque pioÃ¹ lungo il ciclo termina comunque (LO METTO PRIMA PERCHÃ¨ L'ORDINE DELL & Ã¨ IMPORTANTE, L' & RISULTA FALSO APPENA UNA DELLE DUE Ã¨ FALSA COSI NEL CASO SFORI NON PROVA A METTERE L'ULTIMA ROBA IN MEMORIA NON ALLOCATA)
+	// ricordiamo che la fscanf aggiorna ad ogni chiamata il puntatore a FILE, cioÃ¨ fp, cioÃ¨ una volta che avrÃ  letto il primo elemento e lo avrÃ  messo all' 0-esima posizione, aggiorna fp cosi punta direttamente all'elemento dopo. ( nel nostro caso sarÃ  uno spazio/un a capo perchÃ¨ Ã¨ un file di testo, ma la fscanf li salta di base perchÃ¨ abbiamo messo %d che non sono INTERI quindi li salta)
 		i++;
 	}
 
 
 
-	// ora in qualunque modo io abbia allocato non è importante, ora opero su un vettore.
+	// ora in qualunque modo io abbia allocato non Ã¨ importante, ora opero su un vettore.
 	// ORA STO INIZIANDO A FARE LE OPERAZIONI LEGATE ALL'OBIETTIVO DEL PROGRAMMA.
 
 	// USIAMO UN VETTORE DI APPOGGIO DI FLAG CHE QUANDO INCONTRO ELEMENTI CHE VOGLIO ELIMINARE AGGIORNA IL FLAG COSI CON UN CONTROLLO QUESTI ELMENTI NON VERRANNO CONSIDERATI. 
 
 
-	v_flag = (int*)calloc(dim, sizeof(int)); // USO LA CALLOC CHE è UNA FUNZIONE CHE ALLOCA IL VETTORE(come la malloc) MA INIZIALIZZA DIRETTAMENTE TUTTI GLI ELEMENTI A 0
+	v_flag = (int*)calloc(dim, sizeof(int)); // USO LA CALLOC CHE Ã¨ UNA FUNZIONE CHE ALLOCA IL VETTORE(come la malloc) MA INIZIALIZZA DIRETTAMENTE TUTTI GLI ELEMENTI A 0
 	if (v_flag == NULL) {
 		printf("ERRORE di allocazione.\n");
 		exit(EXIT_FAILURE);
@@ -80,12 +80,12 @@ int main(void) {
 	}
 
 	// FACCIAMO ESEMPIO IN CUI DEVO CALCOLARE IL MASSIMO TRA GLI ELEMENTI RIMASTI (tolto quello scelto da utente).
-	// PER QUESTO TIPO DI ESEMPIO NON è NECESSARIO MA è PER CAPIRE IL CONCETTO.
+	// PER QUESTO TIPO DI ESEMPIO NON Ã¨ NECESSARIO MA Ã¨ PER CAPIRE IL CONCETTO.
 
 	int max = INT_MIN;
 
 	for (i = 0; i < dim; i++) {
-		if (v_flag[i] == 0) // se il vettore dei flag ha 0 allora il numero è buono, se avesse 1 sarebbe l'elemento oscurato, cioè che l'elemento in posizine i-esima corrisponde a quello scelto dall'utente da eliminare
+		if (v_flag[i] == 0) // se il vettore dei flag ha 0 allora il numero Ã¨ buono, se avesse 1 sarebbe l'elemento oscurato, cioÃ¨ che l'elemento in posizine i-esima corrisponde a quello scelto dall'utente da eliminare
 			if (v[i] > max)
 				max = v[i];
 	}
