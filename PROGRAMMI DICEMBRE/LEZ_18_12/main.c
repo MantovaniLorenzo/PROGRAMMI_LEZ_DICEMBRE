@@ -7,26 +7,26 @@
 
 // PROGRAMMA CHE UTILIZZA VETTORI DI STRINGHE.
 //IL VETTORE DI STRINGHE VENGONO VISTI COME MATRICI DURANTE L'ALLOCAZIONE 
-// NELLE OPERAZIONI PERÚ VIENE USATO COME UN SEMPLICE VETTORE CHE VIENE USATO CON LE FUNZIONI DI LIBRERIA.
+// NELLE OPERAZIONI PER√≤ VIENE USATO COME UN SEMPLICE VETTORE CHE VIENE USATO CON LE FUNZIONI DI LIBRERIA.
 
 int main(void) {
 
 	//allocazione del vettore
 
-	char** v, i, dim, j;   // IL DOPPIO PUNTATORE SONO PER RIGHE E COLONNE, UNO SAR‡ PER GLI ELEMENTI E L'ALTRO PER STRINGHE 
+	char** v, i, dim, j;   // IL DOPPIO PUNTATORE SONO PER RIGHE E COLONNE, UNO SAR√† PER GLI ELEMENTI E L'ALTRO PER STRINGHE 
 	FILE* fp;
 	char nome[21];
 	char str[M];
 	printf("Definisci dimensione vettore: \n");
 	scanf("%d", &dim);
 	
-	// per allocare dinamicamente una matrice si utilizza questa modalit‡ (ce ne sono altre ma devi imparare questa)
-	v = (char**)malloc(dim * sizeof(char)); // dimensione riga cioË numero elementi (sarebbe un vettore di puntatori)
+	// per allocare dinamicamente una matrice si utilizza questa modalit√† (ce ne sono altre ma devi imparare questa)
+	v = (char**)malloc(dim * sizeof(char*)); // dimensione riga cio√® numero elementi (sarebbe un vettore di puntatori)
 	
 	// per ciascun elemento riga punta a un vettore di caratteri
 	
 	for (i = 0; i < dim; i++) {
-		v[i] = (char*)malloc(M * sizeof(char));  // M, numero colonne Ë il numero massimo di caratteri cioË quanto sono lunghe le stringhe. (possiamo sia chiederlo all'utente che prestabilirlo).
+		v[i] = (char*)malloc(M * sizeof(char));  // M, numero colonne √® il numero massimo di caratteri cio√® quanto sono lunghe le stringhe. (possiamo sia chiederlo all'utente che prestabilirlo).
 	}
 
 
@@ -41,7 +41,7 @@ int main(void) {
 
 	//lettura file 
 	i = 0;
-	while (i < dim && fscanf(fp, "%s", v[i]) != EOF) {  // la prima condizione Ë perchË se sono presenti pi˘ elementi (nel file) che la dim del vettore l'EOF arriverebbe dopo cosi siamo sicuri che ne legge il numero esatto // non ci vuole l' & perchË ciascun elemento i-esimo Ë una stringa e quindi un vettore e quindi un indirizzo
+	while (i < dim && fscanf(fp, "%s", v[i]) != EOF) {  // la prima condizione √® perch√® se sono presenti pi√π elementi (nel file) che la dim del vettore l'EOF arriverebbe dopo cosi siamo sicuri che ne legge il numero esatto // non ci vuole l' & perch√® ciascun elemento i-esimo √® una stringa e quindi un vettore e quindi un indirizzo
 		i++;
 	}
 	dim = i;
@@ -52,7 +52,7 @@ int main(void) {
 	printf("Inserire la stringa da cancellare dal vettore:\n");
 	while (scanf("%s", str) != EOF) {
 		for (i = 0; i < dim; i++) {
-			if (strcmp(v[i], str) == 0) { // == 0 perchË se il confronto tra le stringhe sono uguali torna 0
+			if (strcmp(v[i], str) == 0) { // == 0 perch√® se il confronto tra le stringhe sono uguali torna 0
 				for (j = i; j < dim - 1; j++) {
 					strcpy(v[j], v[j+1]);     // copio la stringa nella posizione prima tramite la strcpy
 				}
@@ -60,7 +60,7 @@ int main(void) {
 				if (dim != 0) {
 					v = realloc(v, dim * sizeof(char));
 				}
-			} i--;  // perchË nel caso particolare in cui ci siano due elementi uguali da cancellare che sono CONTIGUI tiro indietro gli indici cosi riparto dalla stessa posizione sostituita e non viene ignorato l'elemento 
+			} i--;  // perch√® nel caso particolare in cui ci siano due elementi uguali da cancellare che sono CONTIGUI tiro indietro gli indici cosi riparto dalla stessa posizione sostituita e non viene ignorato l'elemento 
 		}
 		printf("Inserire la stringa da cancellare dal vettore:\n");
 	}
