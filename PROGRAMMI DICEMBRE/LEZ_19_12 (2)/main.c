@@ -1,11 +1,11 @@
-/*Questo programma è come l'altro ma usa le stringhe al posto della struttura. Una volta elimate le stringhe
-contenti le parole decise dall'utente da eliminare viene calcolata la strina massima più avanti in ordine alafabitoco
+/*Questo programma Ã¨ come l'altro ma usa le stringhe al posto della struttura. Una volta elimate le stringhe
+contenti le parole decise dall'utente da eliminare viene calcolata la strina massima piÃ¹ avanti in ordine alafabitoco
 
 
 nell esercizio ci sono due soluzioni: una con allocazione statica del vettore, una con allocazione dinamica.
 Per la soluzione con allocazione dinamica si fornisce anche la parte di codice per riallocare il vettore 
 riducendo lo spazio di memoria allocato ogni volta che la strinfa cercata viene cancellata dal vettore 
-(quest'ultima parte nnon è obbligatoria basta quindi eseguire dim-- in modo da scorrere il vettore 
+(quest'ultima parte nnon Ã¨ obbligatoria basta quindi eseguire dim-- in modo da scorrere il vettore 
 condizionatamente fino all'ultima elemento buono)*/
 
 
@@ -18,7 +18,7 @@ condizionatamente fino all'ultima elemento buono)*/
 
 // SOLUZIONE CON ALLOCAZIONE STATICA 
 
-#define M 31 // dimensione che ci indica quanto è grande AL MASSSIMO la parola/stringa
+#define M 31 // dimensione che ci indica quanto Ã¨ grande AL MASSSIMO la parola/stringa
 #define N 10 // dimensione che ci fa capire che gestiremo AL MASSIMO, N parole/stringhe 
 
 // quindi abbiamo un vettore di N stringhe dove ciascuna di queste N stringhe contiene al masssimo M-1 caratteri (ultimo tappo)
@@ -43,7 +43,7 @@ int main(void) {
 
 	i = 0;
 	dim = N;
-	while (i < dim && fscanf(fp, "%s", v[i]) != EOF) { // non ci vuole & perchè stringa
+	while (i < dim && fscanf(fp, "%s", v[i]) != EOF) { // non ci vuole & perchÃ¨ stringa
 		i++;
 	}
 	dim = i; // nel caso in cui le stringhe nel file siano meno della dimensione N allocata per il vettore
@@ -129,8 +129,8 @@ printf("Inserire la stringa da cancellare dal vettore:\n");
 				for (j = i; j < dim; j++) {
 					strcpy(v[j], v[j + 1]);
 				}
-				free(v[dim-1]);  // libero l'ultimo elemento puntato cioè l'ultima stringa
-				dim--;
+				free(v[dim-1]);  // libero l'ultimo elemento puntato cioÃ¨ l'ultima stringa
+				dim--;  // dim- 1 poicjÃ¨ la dimensione Ã¨ dim ma gli indici partono da 0 fino a dim-1 quindi l'ulitmo elemento Ã¨ in pos indice dim-1 
 				if (dim != 0) {
 					v = (char**)realloc(v, dim * sizeof(char*));
 					if(v == NULL){
