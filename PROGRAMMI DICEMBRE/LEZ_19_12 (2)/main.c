@@ -55,7 +55,7 @@ int main(void) {
 		for (i = 0; i < dim; i++)
 			if (strcmp(v[i], str) == 0) {
 				//shift a sx 
-				for (j = i; j < dim; j++) {
+				for (j = i; j < dim - 1; j++) {
 					strcpy(v[j], v[j + 1]);
 				}
 				dim--;
