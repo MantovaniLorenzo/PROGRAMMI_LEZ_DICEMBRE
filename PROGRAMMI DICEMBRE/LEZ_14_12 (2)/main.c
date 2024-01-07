@@ -1,4 +1,4 @@
-//	PROGRAMMA CON LA STESSA FUNZIONALITà DI QUELLO VECCHIO MA IN QUESTO CASO ELIMINO PROPRIO GLI ELEMENTI PRESENTI NEL VETTORE 
+//	PROGRAMMA CON LA STESSA FUNZIONALITÃ  DI QUELLO VECCHIO MA IN QUESTO CASO ELIMINO PROPRIO GLI ELEMENTI PRESENTI NEL VETTORE 
 // NEL PROGRAMMA DEFINITO PRECEDENTEMENTE INVECE LI IGNORAVO ATTRAVERSO IL VETTORE DI FLAG
 
 // IL CONCETTO DELLA SOLUZIONE SI BASA SUL SOVRASCRIVERE I VALORI NON ACCETTATI CON QUELLI SUCCESSIVI ACCETTATI.
@@ -37,7 +37,7 @@ int main(void) {
 
 	//lettura file 
 	i = 0;
-	while (i < dim && fscanf(fp, "%d", &v[i]) != EOF) {  // la prima condizione è perchè se sono presenti più elementi (nel file) che la dim del vettore l'EOF arriverebbe dopo cosi siamo sicuri che ne legge il numero esatto
+	while (i < dim && fscanf(fp, "%d", &v[i]) != EOF) {  // la prima condizione Ã¨ perchÃ¨ se sono presenti piÃ¹ elementi (nel file) che la dim del vettore l'EOF arriverebbe dopo cosi siamo sicuri che ne legge il numero esatto
 		i++;
 	}
 	dim = i;
@@ -47,7 +47,7 @@ int main(void) {
 
 	printf("Inserire il valore da cancellare dal vettore:\n");
 	while (scanf("%d", &num) != EOF) {
-		for ( i = 0; i < dim; i++) {
+		for ( i = 0; i < dim; i++) 
 			if (v[i] == num) {
 				for (j = i; j < dim - 1; j++) {
 					v[j] = v[j + 1];
@@ -57,7 +57,7 @@ int main(void) {
 					v = realloc(v, dim * sizeof(int));
 				}
 			} i--;
-		}
+		
 		printf("Inserire il valore da cancellare dal vettore:\n");
 	}
 
